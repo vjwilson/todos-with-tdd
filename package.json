@@ -1,0 +1,41 @@
+{
+  "name": "todos-with-tdd",
+  "version": "0.1.0",
+  "description": "Sample repository to illustrate unit, integration, and functional testing, all in JavaScript",
+  "main": "index.js",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/vjwilson/todos-with-tdd.git"
+  },
+  "scripts": {
+    "build": "webpack --config webpack.prod.js",
+    "e2e-tests": "cucumber-js",
+    "start": "webpack-dev-server --open --config webpack.dev.js",
+    "test": "jest",
+    "test:watch": "jest --watchAll"
+  },
+  "author": "Van J. Wilson <van.wilson1992@alumni.unc.edu>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "chromedriver": "^2.33.0",
+    "clean-webpack-plugin": "^0.1.16",
+    "css-loader": "^0.28.5",
+    "cucumber": "^3.0.4",
+    "file-loader": "^0.11.2",
+    "html-webpack-plugin": "^2.30.1",
+    "jest": "^21.2.1",
+    "selenium-webdriver": "^3.6.0",
+    "style-loader": "^0.18.2",
+    "uglifyjs-webpack-plugin": "^0.4.6",
+    "webpack": "^3.5.5",
+    "webpack-dev-server": "^2.7.1",
+    "webpack-merge": "^4.1.0"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "whatwg-fetch": "^2.0.3"
+  }
+}
