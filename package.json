@@ -37,5 +37,8 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "whatwg-fetch": "^2.0.3"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "./testHelper.js"
   }
 }
