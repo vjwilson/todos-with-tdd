@@ -87,4 +87,28 @@ Model.prototype.remove = function (id, callback) {
     this.storage.drop(callback);
   };
 
+/**
+ * Returns a count of all todos
+ */
+Model.prototype.getCount = function (callback) {
+  var todos = {
+    active: 0,
+    completed: 0,
+    total: 0
+  };
+
+  this.storage.findAll(function (data) {
+    data.forEach(function (todo) {
+      if (todo.completed) {
+        todos.completed++;
+      } else {
+        todos.active++;
+      }
+
+      todos.total++;
+    });
+    callback(todos);
+  });
+};
+
 module.exports = Model;

@@ -199,4 +199,90 @@ describe('Model tests', function() {
       expect(removeAllCallback).toHaveBeenCalled();
     });
   });
+
+  describe('getCount function', function() {
+    // unit test,
+    // with mock implementation of store's findAll function
+    it('should pass callback to the Store getCount function (unit test)', function() {
+      // arrange
+      var exampleTodos = [
+        {
+          id: 10,
+          title: 'Gild lilies',
+          completed: false
+        },
+        {
+          id: 11,
+          title: 'Scedule meeting to schedule other meetings',
+          completed: true
+        },
+        {
+          id: 12,
+          title: 'Burn bridges',
+          completed: false
+        }
+      ];
+      var mockStore = {
+        findAll: jest.fn().mockImplementation(function(callback) {
+          callback.call(null, exampleTodos);
+        })
+      };
+
+      var model = new Model(mockStore);
+      var getCountCallback = jest.fn();
+
+      // act
+      model.getCount(getCountCallback);
+
+      // assert
+      var expectedResult = {
+        active: 2,
+        completed: 1,
+        total: 3
+      };
+      expect(getCountCallback).toHaveBeenCalledWith(expectedResult);
+    });
+
+    // integration test,
+    // using reail implementation of store's findAll function
+    it('should pass callback to the Store getCount function (integration test)', function() {
+      // arrange
+      var Store = require('../Store/Store.js');
+      var exampleTodos = [
+        {
+          id: 10,
+          title: 'Gild lilies',
+          completed: false
+        },
+        {
+          id: 11,
+          title: 'Scedule meeting to schedule other meetings',
+          completed: true
+        },
+        {
+          id: 12,
+          title: 'Burn bridges',
+          completed: false
+        }
+      ];
+      var realStore = new Store('yamato');
+      exampleTodos.forEach(function(todo) {
+        realStore.save(todo)
+      });
+
+      var model = new Model(realStore);
+      var getCountCallback = jest.fn();
+
+      // act
+      model.getCount(getCountCallback);
+
+      // assert
+      var expectedResult = {
+        active: 2,
+        completed: 1,
+        total: 3
+      };
+      expect(getCountCallback).toHaveBeenCalledWith(expectedResult);
+    });
+  });
 });
