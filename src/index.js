@@ -1,4 +1,4 @@
-console.log('It works');
+import './index.css';
 
 var App = require('./App/App.js');
 var helpers = require('./utils/helpers.js');
